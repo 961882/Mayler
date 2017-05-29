@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import scrapy
 
 class FarmSpider(scrapy.spiders.Spider):
