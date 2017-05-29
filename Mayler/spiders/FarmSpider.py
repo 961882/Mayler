@@ -10,9 +10,7 @@ class FarmSpider(scrapy.spiders.Spider):
     ]
 
     def parse(self, response):  # 真正的爬虫方法
+        print '开始------------------------'
         html = response.body  # response是获取到的来自网站的返回
-        # 以下四行将html存入文件
-        filename = "index.html"
-        file = open(filename, "w")
-        file.write(html)
-        file.close()
+        print html
+        print '结束------------------------'
