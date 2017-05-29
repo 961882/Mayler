@@ -43,7 +43,7 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Encoding': 'gzip, deflate, sdch',
     'Accept-Language': 'zh-CN,zh;q=0.8',
-    'Cookie': 'UM_distinctid=15c47d376a71f9-077f536ba6a1e6-1d3b6853-fa000-15c47d376a8211; JSESSIONID=FFC867A927671CCD2118B9A343B8BDE9; CNZZDATA3767539=cnzz_eid%3D1420715067-1495849037-%26ntime%3D1496055937'
+    'Cookie': 'UM_distinctid=15c47d376a71f9-077f536ba6a1e6-1d3b6853-fa000-15c47d376a8211; JSESSIONID=FFC867A927671CCD2118B9A343B8BDE9; CNZZDATA3767539=cnzz_eid%3D1420715067-1495849037-%26ntime%3D1496055937',
     'Host': 'www.3w3n.com'
 }
 
