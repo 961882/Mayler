@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3bc61853-242b-4e20-8ba7-d457227cf827" name="SFTP" url="http://192.168.3.21">
+        <fileTransfer host="192.168.3.21" port="22" rootFolder="/root/PycharmProjects" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

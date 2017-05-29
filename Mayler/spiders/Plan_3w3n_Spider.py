@@ -1,6 +1,6 @@
 from scrapy.spider import BaseSpider
 
-class 3w3nSpider(BaseSpider)
+class Plan_3w3n_Spider(BaseSpider)
     name = "3w3n" #
     allowed_domains = ["3w3n.com"]
     start_urls = [
