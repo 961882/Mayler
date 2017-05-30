@@ -27,7 +27,7 @@ class FarmSpider(Spider):
 
     def from_requests(self):
         for url in self.start_urls:
-            yield Request(url, self.headers)
+            yield Request(url=url, headers=self.headers, callback=self.parse)
 
     def parse(self, response):  # 真正的爬虫方法
         print '页面开始------------------------'
