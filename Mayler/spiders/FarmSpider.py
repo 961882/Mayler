@@ -3,7 +3,6 @@
 import scrapy
 from scrapy.spider import Spider
 from scrapy.http.request import Request
-from scrapy.http.response import Response
 
 
 class FarmSpider(Spider):
@@ -25,13 +24,11 @@ class FarmSpider(Spider):
         "Cookie": "UM_distinctid=15c47d376a71f9-077f536ba6a1e6-1d3b6853-fa000-15c47d376a8211; JSESSIONID=0446C94B72B8972FE042C94BED37B578; CNZZDATA3767539=cnzz_eid%3D1420715067-1495849037-%26ntime%3D1496143674",
     }
 
-#    def from_requests(self):
-#        for url in self.start_urls:
-#            yield Request(url, headers=self.headers, callback=self.parse)
-
-    def parse(self, response):  # 真正的爬虫方法
+    def from_requests(self):
         for url in self.start_urls:
             yield Request(url, headers=self.headers, callback=self.parse)
+
+    def parse(self, response):  # 真正的爬虫方法
 
         print '页面开始------------------------'
         #item = response.meta['item']
