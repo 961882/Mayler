@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 
 import scrapy
+import requests
 from scrapy.spider import Spider
 from scrapy.http.request import Request
 
@@ -8,25 +9,30 @@ from scrapy.http.request import Request
 class FarmSpider(Spider):
     name = "farmer"  # 爬虫的名字，执行时使用
     allowed_domains = ["3w3n.com"]  # 允许爬取的域名，非此域名的网页不会爬取
-    start_urls = [
-        #"http://www.3w3n.com"  # 起始url，此例只爬着一个页面
-        "http://www.3w3n.com/showPriceDefaultList?r=E4370F75B8B401460EC7D9247020EE1E",
-    ]
+    # start_urls = [
+    #     #"http://www.3w3n.com"  # 起始url，此例只爬着一个页面
+    #     "http://www.3w3n.com/showPriceDefaultList",
+    # ]
 
-    headers = {
-        "Host": "www.3w3n.com",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-        "Accept-Language": "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3",
-        "Accept-Encoding": "gzip, deflate",
-        "Connection": "keep-alive",
-        "Referer": "http://www.3w3n.com/user/price4Day/goIndex",
-        #"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
-        "Cookie": "UM_distinctid=15c47d376a71f9-077f536ba6a1e6-1d3b6853-fa000-15c47d376a8211; JSESSIONID=3CEE98C5D777A8DE6058612383FE40DD; CNZZDATA3767539=cnzz_eid%3D1420715067-1495849037-%26ntime%3D1496152332"
-    }
+    headers = {'Host': "www.3w3n.com",
+               'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+               'Accept': "*/*",
+               'Cookie': "UM_distinctid=15c535e1aa7151-057ae2cd5b8aa3-3e6e4647-c0000-15c535e1aa895; CNZZDATA3767539=cnzz_eid%3D878788885-1496043905-http%253A%252F%252Fwww.3w3n.com%252F%26ntime%3D1496209511; JSESSIONID=24791B3A52F61ACE4FD786444D519B6C",
+               'Origin': "http://www.3w3n.com",
+               'Referer': "http://www.3w3n.com/user/price4Day/goIndex",
+               'Accept-Language': "en-US,en;q=0.5",
+               'Accept-Encoding': "gzip, deflate",
+               'Connection': "keep-alive",
+               'Upgrade-Insecure-Requests':"1"}
 
-    def from_requests(self):
-        for url in self.start_urls:
-            yield Request(url, headers=self.headers, callback=self.parse,method="POST")
+    def start_requests(self):
+        return [scrapy.FormRequest("http://www.3w3n.com/showPriceDefaultList",
+                                   formdata={'r': 'AF2156CCC28BAF2FA8F9D62AEAAF0D7C'},
+                                   headers=self.headers,
+                                   #method='GET'
+                                   )]
+
+
 
     def parse(self, response):  # 真正的爬虫方法
 
@@ -34,4 +40,5 @@ class FarmSpider(Spider):
         #item = response.meta['item']
         html = response.body # response是获取到的来自网站的返回
         print html
+        print response
         print '页面结束------------------------'
