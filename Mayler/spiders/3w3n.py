@@ -5,7 +5,7 @@ from scrapy.spider import Spider
 
 
 class FarmSpider(Spider):
-    name = "farmer"  # 爬虫的名字，执行时使用
+    name = "farmer2"  # 爬虫的名字，执行时使用
     allowed_domains = ["3w3n.com"]  # 允许爬取的域名，非此域名的网页不会爬取
     # start_urls = [
     #     #"http://www.3w3n.com"  # 起始url，此例只爬着一个页面

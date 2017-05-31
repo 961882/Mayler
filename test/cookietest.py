@@ -9,7 +9,7 @@ handler=urllib2.HTTPCookieProcessor(cookie)
 #通过handler来构建opener
 opener = urllib2.build_opener(handler)
 #此处的open方法同urllib2的urlopen方法，也可以传入request
-response = opener.open('http://www.baidu.com')
+response = opener.open('http://www.3w3n.com/user/price4Day/goIndex')
 for item in cookie:
     print 'Name = '+item.name
     print 'Value = '+item.value
