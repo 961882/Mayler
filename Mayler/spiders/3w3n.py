@@ -2,6 +2,8 @@
 
 import scrapy
 from scrapy.spider import Spider
+from scrapy.selector import Selector
+from Mayler.items import MaylerItem
 
 
 class FarmSpider(Spider):
@@ -12,26 +14,22 @@ class FarmSpider(Spider):
     #     "http://www.3w3n.com/showPriceDefaultList",
     # ]
 
-    # headers = {'Host':"www.3w3n.com",
-    #             'User-Agent':"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:51.0) Gecko/20100101 Firefox/51.0",
-    #             'Accept':"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    #             'Cookie':"JSESSIONID=8781A8427903E4D06B80D7D7865A4160",
-    #             'Accept-Language':"en-US,en;q=0.5",
-    #             'Accept-Encoding':"gzip, deflate",
-    #             'Connection':"keep-alive",
-    #             'Upgrade-Insecure-Requests':"1"}
-
-    def start_requests(self):
-        return [scrapy.FormRequest("http://www.3w3n.com/showPriceDefaultList",
-                                formdata={'r': "58ED63716FED6A913B9D247C00CBD0E6"},
-                                cookies={'JSESSIONID': "314F0ED803005889DC23D80A22A20FD8"},
-                                )]
-
     def parse(self, response):  # 真正的爬虫方法
+        print '####################开始执行parse方法###################'
+        item = MaylerItem()
+        selector = Selector(response)
+        all_data = selector.xpath('//div[@class="price_list"]')
+        for div in all_data:
+            farmName = div.xpath('div[@class="name overflow"]/a/text()')[0].extract()
+            item['farm_Name'] = farmName
 
-        print '页面开始------------------------'
-        #item = response.meta['item']
-        html = response.body # response是获取到的来自网站的返回
-        print html
-        print response.headers
+            yield scrapy.FormRequest("http://www.3w3n.com/showPriceDefaultList",
+                                     #callback=self.parse_item,
+                                     meta={'item': item},
+                                     formdata={'r': "C9036FB4B8D862ED4DE7EDD6484739ED"},
+                                     cookies={'JSESSIONID': "D4C150887A2B2039D22A97E4F0705A87"},
+                                     )
+
+        print response.body
+
         print '页面结束------------------------'

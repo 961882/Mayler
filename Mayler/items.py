@@ -17,12 +17,12 @@ class MaylerItem(Item):
     # chanpindalei
     farm_Catgory2 = Field()
     # chanpinmingcheng
-    farm_Name = Field()
+    F_Name = Field()
     # chanpinjiage
-    farm_Price = Field()
+    F_Price = Field()
     # jiaoyididian
-    farm_Place = Field()
+    F_Tradeplace = Field()
     # jiaoyishijian
-    farm_TranDate = Field()
+    F_TTime = Field()
 
     pass
